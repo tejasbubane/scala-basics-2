@@ -15,3 +15,6 @@ p.canMarry(canDrink)
 p.canMarry(_ > 30) // i don't care to give arguments a name
 // OR
 p.canMarry(age => age > 30)
+
+p.canMarry(age => age > 30 && age < 70)
+// p.canMarry(_ > 30 && _ < 70) this won't work for multiple _s
