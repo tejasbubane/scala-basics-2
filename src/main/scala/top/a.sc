@@ -6,15 +6,19 @@ class Person(age: Int, isFemale: Boolean) {
     isWise && canDrink(age)
 }
 
-val p = new Person(19, true)
-p.isWise
-val canDrink: Int => Boolean = { age => age > 30 }
+//////////
 
-p.canMarry(canDrink)
-// OR
-p.canMarry(_ > 30) // i don't care to give arguments a name
-// OR
-p.canMarry(age => age > 30)
+def canDrink(age: Int) = age > 50  // method
 
-p.canMarry(age => age > 30 && age < 70)
-// p.canMarry(_ > 30 && _ < 70) this won't work for multiple _s
+val canDrink1 = { age: Int => age > 50 } // function
+// functions by very nature are objects hence they are VALUES
+
+canDrink(10)
+
+canDrink1(10)
+canDrink1.apply(10)
+
+canDrink1 // val Int => Boolean = <function1>
+canDrink _ // eta-expansion : convert this method to a function
+
+val x: Int => Boolean = canDrink
