@@ -2,8 +2,8 @@
 
 val seq = Seq(1, 2, 3, 4, 5)
 
-def transform(seq: Seq[Int], f: Int => Int): Seq[Int] = {
-  var a: Seq[Int] = Seq.empty
+def transform[T](seq: Seq[T], f: T => T): Seq[T] = {
+  var a: Seq[T] = Seq.empty
   val iterator = seq.iterator
   while(iterator.hasNext) {
     a = a :+ f(iterator.next())
@@ -11,6 +11,6 @@ def transform(seq: Seq[Int], f: Int => Int): Seq[Int] = {
   a
 }
 
-transform(seq, x => x * 7)
+transform[Int](seq, x => x * 7)
 
-transform(Seq(1, 2, 3), x => x * x)
+transform[Int](Seq(1, 2, 3), x => x * x)
