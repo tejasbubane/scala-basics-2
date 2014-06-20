@@ -19,6 +19,17 @@ def transform_rec[T, S](seq: Seq[T])(f: T => S): Seq[S] = {
   else
     f(seq.head) +: transform_rec(seq.tail)(f)
 }
-transform_rec(seq)(x => x * 7)
-transform_rec(Seq(1, 2, 3))(x => x * x)
-transform_rec(seq)({x: Int => (x == 2 || x == 3)})
+
+// tail-recursive implementation
+def transform_tailrec[T, S](seq: Seq[T])(f: T => S): Seq[S] = {
+  def transform_acc[T, S](seq: Seq[T], acc: Seq[S])(f: T => S): Seq[S] = {
+    if (seq.isEmpty)
+      acc
+    else
+      transform_acc(seq.tail, acc:+f(seq.head))(f)
+  }
+  transform_acc(seq, Seq.empty[S])(f)
+}
+transform_tailrec(seq)(x => x * 7)
+transform_tailrec(Seq(1, 2, 3))(x => x * x)
+transform_tailrec(seq)({x: Int => (x == 2 || x == 3)})
