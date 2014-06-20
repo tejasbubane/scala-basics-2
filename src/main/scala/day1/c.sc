@@ -1,12 +1,19 @@
 // Object Oriented in Scala
 
-class Person(val age: Int)(name: String) {}
+class Person(private var _age: Int, name: String) {
+  // we usually don't use private var in constructor
 
-val p = new Person(34)("ashoka")
+  println("outer")
+  val x = 10
 
-// p.age = 10 // This will be compile time error, reassignment not allowed
+  {
+    println("inner")
+    val x = 90
+    println(x)
+  }
 
-p.age
-
-val p1 = new Person(13)(_)
-p1("tejas")
+  def age = _age // getter
+  def age_=(other: Int)= _age = other  // setter
+}
+val p = new Person(23, "tejas")
+p.age = 100
