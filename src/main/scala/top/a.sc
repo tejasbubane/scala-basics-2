@@ -1,26 +1,17 @@
-class A[T1, T2](a: T1, b:T2)
-
-val a: A[Int, String] = new A(1, "aa")
-val a1: Int A String = new A(1, "aa")
-
-type ====>[T1, T2] = Function1[T1, T2] //type alias
-
-val allAges = new Function1[Int, Boolean] {
-  def apply(age: Int) = true
-}
-val gujSt = new Function1[Int, Boolean] {
-  def apply(age: Int): Boolean = false
-}
-val mahSt: Int => Boolean = { age: Int => age > 30 } // lambda syntax
+// no need of strategies
 
 class Person(age: Int, isFemale: Boolean) {
   def isWise: Boolean = if(isFemale) age > 18 else age > 21
-  def canMarry(canDrink: Function1[Int, Boolean]) =
+  def canMarry(canDrink: Int => Boolean) =
     isWise && canDrink(age)
 }
 
 val p = new Person(19, true)
 p.isWise
-p.canMarry(allAges)
-p.canMarry(gujSt)
-p.canMarry(mahSt)
+val canDrink: Int => Boolean = { age => age > 30 }
+
+p.canMarry(canDrink)
+// OR
+p.canMarry(_ > 30) // i don't care to give arguments a name
+// OR
+p.canMarry(age => age > 30)
