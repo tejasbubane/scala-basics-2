@@ -17,3 +17,16 @@ While(x < 10)({
   println(x)
   x = x + 1
 })
+
+// Partial evaluation of functions
+def add(a: Int)(b: Int)(c: Int) = a + b + c
+val a = add(4) _
+val b = a(4)
+val c = b(4)
+
+// tuples
+val xs = Seq(1, 2, 3, 4, 5)
+
+val (greater, smaller) = xs.partition(_ > 3)
+greater
+smaller
