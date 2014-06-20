@@ -1,21 +1,17 @@
-trait DrinkStrategy {
-  def apply(age: Int): Boolean
-}
-
-val allAges = new DrinkStrategy {
+val allAges = new Function1[Int, Boolean] {
   def apply(age: Int) = true
 }
-val gujSt = new DrinkStrategy {
+val gujSt = new Function1[Int, Boolean] {
   def apply(age: Int): Boolean = false
 }
-val mahSt = new DrinkStrategy {
+val mahSt = new Function1[Int, Boolean] {
   def apply(age: Int): Boolean = age > 18
 }
 
 class Person(age: Int, isFemale: Boolean) {
   def isWise: Boolean = if(isFemale) age > 18 else age > 21
-  def canMarry(canDrink: DrinkStrategy) =
-    isWise && canDrink.apply(age)
+  def canMarry(canDrink: Function1[Int, Boolean]) =
+    isWise && canDrink(age) // apply method is invoked implicitly
 }
 
 val p = new Person(19, true)
