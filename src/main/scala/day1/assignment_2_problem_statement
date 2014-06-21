@@ -1,0 +1,24 @@
+  Items: Books / Medicines
+  Compute the receipt
+
+  Taxes:
+    SalesTax : rounded down
+    Import Duty : only on imported items, rounded up
+
+
+    ( All below values in percentages )
+                  Sales Tax     Import Duty
+    Books           10.4          9.4
+    Medicines       2.7           10.1
+
+Billing1 :
+  Book1 : 120
+  Book2 : 1004, imported
+  Book3 : 87.8
+  Medicine1 : 503.3
+  Medicine2 : 19.3
+
+Hints :
+  Use transform method
+  Use ceil and floor on Double
+  Use sum on double sequences
